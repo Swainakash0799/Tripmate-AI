@@ -8,15 +8,16 @@
 
 ## 🚀 Features
 
-- ✈️ Flight search using AviationStack API
-- 🏨 Hotel recommendations powered by Tavily Search
-- 🤖 AI-generated personalized travel itineraries
+- 🤖 AI-powered personalized travel planning
+- ✈️ Live flight search using AviationStack API
+- 🏨 Hotel recommendations using Tavily Search
+- 🗺️ Day-by-day itinerary generation
 - 🧠 Persistent conversation memory with LangGraph + PostgreSQL
-- 💬 Multi-turn conversations using thread-based memory
-- 📄 Export travel plans as PDF or TXT
-- 📋 Copy travel plan to clipboard
+- 💬 Multi-turn conversations with thread-based memory
+- 📄 Export travel plans as PDF and TXT
+- 📋 Copy itinerary with one click
 - 🌙 Modern responsive Streamlit interface
-- ⚡ Fast inference using Groq Llama 3.3 70B
+- 📊 LangSmith tracing and monitoring
 - 🐳 Docker support for containerized deployment
 
 ---
@@ -173,17 +174,6 @@ The application is deployed on **Render**.
 - **Frontend:** Render Web Service
 - **Database:** Render Managed PostgreSQL
 - **Persistent Memory:** LangGraph Checkpointer + PostgreSQL
-
----
-
-## 📸 Screenshots
-
-Add screenshots of:
-
-- Home Screen
-- AI Travel Plan
-- PDF Export
-- Chat Interface
 
 ---
 
