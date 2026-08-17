@@ -3,6 +3,7 @@
 **Trip Mate AI** is an AI-powered travel planning assistant that helps users plan personalized trips by combining **live flight search**, **hotel recommendations**, and **AI-generated itineraries**. The application leverages a **LangGraph multi-agent architecture**, **Groq LLMs**, and **persistent conversation memory** with PostgreSQL to provide an interactive travel planning experience.
 
 🌐 **Live Demo:** https://tripmate-ai-wqhh.onrender.com/
+> **Note:** Since the application is hosted on Render's free tier, the first request may take some time while the server wakes up.
 
 ---
 
