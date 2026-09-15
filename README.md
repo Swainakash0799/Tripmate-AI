@@ -130,6 +130,8 @@ AVIATIONSTACK_API_KEY=your_aviationstack_api_key
 TAVILY_API_KEY=your_tavily_api_key
 ```
 
+If `DATABASE_URL` is missing or temporarily unreachable, the app still starts with in-memory conversation state (non-persistent). Restore/update your Render PostgreSQL URL to re-enable persistent memory.
+
 ---
 
 ## ▶️ Run Locally

@@ -15,6 +15,7 @@ import psycopg
 from psycopg.rows import dict_row
 
 from langgraph.graph import StateGraph, START, END
+from langgraph.checkpoint.memory import MemorySaver
 from langgraph.checkpoint.postgres import PostgresSaver
 from langchain_core.messages import (
     AnyMessage,
@@ -31,9 +32,7 @@ def get_database_url():
     database_url = os.getenv("DATABASE_URL")
 
     if not database_url:
-        raise ValueError(
-            "DATABASE_URL is missing. Please add your Render PostgreSQL External Database URL to .env"
-        )
+        return None
 
     if "sslmode=" not in database_url:
         separator = "&" if "?" in database_url else "?"
@@ -204,18 +203,27 @@ graph.add_edge("final_agent", END)
 
 
 # =========================
-# PostgreSQL Checkpointer
+# Checkpointer
 # =========================
-DATABASE_URL = get_database_url()
+def build_checkpointer():
+    database_url = get_database_url()
+    if not database_url:
+        return MemorySaver()
 
-_conn = psycopg.connect(
-    DATABASE_URL,
-    autocommit=True,
-    row_factory=dict_row
-)
+    try:
+        conn = psycopg.connect(
+            database_url,
+            autocommit=True,
+            row_factory=dict_row,
+        )
+        postgres_checkpointer = PostgresSaver(conn)
+        postgres_checkpointer.setup()
+        return postgres_checkpointer
+    except psycopg.OperationalError:
+        return MemorySaver()
 
-checkpointer = PostgresSaver(_conn)
-checkpointer.setup()
+
+checkpointer = build_checkpointer()
 
 travel_graph = graph.compile(checkpointer=checkpointer)
 
